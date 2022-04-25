@@ -11,6 +11,12 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'database_cleaner', '~> 1.8', '>= 1.8.5'
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'ffaker', '~> 2.17'
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
+  gem 'shoulda-matchers', '~> 4.5'
+  gem 'simplecov', '~> 0.21.2', require: false
 end
 
 group :development do
