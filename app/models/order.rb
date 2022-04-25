@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :merchant
   belongs_to :shopper
-
+  has_many :merchant_disbursements, dependent: :destroy
   validates :amount, presence: true
   after_save_commit :calculate_disbursement_amount_for_completed_order
   private

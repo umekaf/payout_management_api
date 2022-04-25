@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Merchant do
   describe '#associations' do
     it { is_expected.to have_many(:orders).dependent(:destroy) }
+    it { is_expected.to have_many(:merchant_disbursements).dependent(:destroy) }
   end
 
   describe "#validations" do

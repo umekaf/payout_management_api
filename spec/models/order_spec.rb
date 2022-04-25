@@ -4,6 +4,7 @@ describe Order do
   describe '#associations' do
     it { is_expected.to belong_to(:merchant) }
     it { is_expected.to belong_to(:shopper) }
+    it { is_expected.to have_many(:merchant_disbursements).dependent(:destroy) }
   end
 
   describe "#validations" do

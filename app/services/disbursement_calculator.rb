@@ -3,6 +3,7 @@ class DisbursementCalculator
     @order_id = order_id
   end
   attr_reader :order_id
+
   def call
     order = Order.find_by_id(order_id)
     merchant = order.merchant
@@ -11,6 +12,8 @@ class DisbursementCalculator
     MerchantDisbursement.create!(order_id: order_id, merchant_id: merchant.id, disburse_amount: disburse_amount)
   end
 
+  private
+  
   def calculate_disburse_amount(amount)
     less_than_50 = amount < 50
     between_50_and_300 = amount.between? 50, 300
