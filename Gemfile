@@ -10,6 +10,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem 'redis', '~> 4.6'
 gem 'sidekiq', '~> 6.4', '>= 6.4.2'
+gem 'jbuilder', '~> 2.7'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
