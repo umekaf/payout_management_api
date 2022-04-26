@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Api::V1::MerchantDisbursements', type: :request do
   describe '#index' do
-    context 'when params is sent' do
+    context 'when merchant params is sent' do
       let(:merchant) {create(:merchant)}
       let(:expected_response) do
         {
@@ -22,6 +22,31 @@ RSpec.describe 'Api::V1::MerchantDisbursements', type: :request do
 
       it 'returns records for only sent merchant id' do
         get "/api/v1/merchant_disbursements?merchant_id=#{merchant.id}"
+        expect(parsed_response).to eq(expected_response)
+      end
+    end
+
+    context 'when merchant params is not sent' do
+      let(:expected_response) do
+        {
+          data:[
+            {
+              merchant_id: merchant_disbursement_list.first.merchant_id,
+              disburse_amount: merchant_disbursement_list.first.disburse_amount
+            },
+            {
+              merchant_id: merchant_disbursement_list.last.merchant_id,
+              disburse_amount: merchant_disbursement_list.last.disburse_amount
+            }
+          ]
+        }
+      end
+
+      let!(:merchant_disbursement_list) { create_list(:merchant_disbursement, 2)}
+
+      it 'returns all merchants with respective disburse amount' do
+        get "/api/v1/merchant_disbursements"
+        
         expect(parsed_response).to eq(expected_response)
       end
     end
